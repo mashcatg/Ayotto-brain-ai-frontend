@@ -33,10 +33,10 @@ function App() {
               {
                 text: `Analyze this image and extract multiple-choice questions (MCQs) exactly as they appear in the image. Maintain the original language and formatting.
 
-                - If the image contains a stamp image before any question, replace it with "[image here]".
+                - If the image contains a stamp image, diagram, chart before any question, replace it with "[image here]".
                 - Ensure every question has at least one correct answer.
                 - If reference text or explanation (solution) exists, include them.
-                - There can be stamp for a question. (e.g.: নিচের চিত্রের আলোতে ১০ ও ১১নং প্রশ্নের উত্তর দাও।)
+                - There can be a text stamp before a question. (e.g.: নিচের চিত্রের আলোতে ১০ ও ১১নং প্রশ্নের উত্তর দাও।). this should be stampText.
                 - Return ONLY raw JSON in this format:
 
                 [
