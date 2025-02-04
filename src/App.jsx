@@ -36,10 +36,12 @@ function App() {
                 - If the image contains a stamp image before any question, replace it with "[image here]".
                 - Ensure every question has at least one correct answer.
                 - If reference text or explanation (solution) exists, include them.
+                - There can be stamp for a question. (e.g.: নিচের চিত্রের আলোতে ১০ ও ১১নং প্রশ্নের উত্তর দাও।)
                 - Return ONLY raw JSON in this format:
 
                 [
                   {
+                    "stampText": "", // if stamp exists, replace with that stamp text
                     "questionText": "string",
                     "isExtraImageExist": "", // if image exists, replace with [image here]
                     "referenceText": "",
