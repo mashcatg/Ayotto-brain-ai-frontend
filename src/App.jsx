@@ -121,6 +121,7 @@ function App() {
           <h2>Extracted Questions:</h2>
           {questions.map((q, index) => (
             <div key={index}>
+              {q.stampText && <p>Stamp: {p.stampText}</p>}
               {q.questionText && <p>{q.questionText}</p>}
               {q.referenceText && <p>{q.referenceText}</p>}
               <ul>
