@@ -23,7 +23,7 @@ function App() {
     reader.onloadend = async () => {
       const base64Image = reader.result.split(",")[1];
 
-      const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || process.env.REACT_APP_GEMINI_API_KEY || "your-google-api-key";
+      const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
       const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
       const payload = {
