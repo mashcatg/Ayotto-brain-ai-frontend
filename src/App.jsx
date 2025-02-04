@@ -36,12 +36,11 @@ function App() {
                 - If the image contains a stamp image, diagram, chart before any question, replace it with "[image here]".
                 - Ensure every question has at least one correct answer.
                 - If reference text or explanation (solution) exists, include them.
-                - There can be a text stamp before a question. (e.g.: নিচের চিত্রের আলোতে ১০ ও ১১নং প্রশ্নের উত্তর দাও।). this should be stampText.
+                - Ignore all the stamp texts(e.g.: নিচের চিত্রের আলোতে ১০ ও ১১নং প্রশ্নের উত্তর দাও।)
                 - Return ONLY raw JSON in this format:
 
                 [
                   {
-                    "stampText": "", // if stamp exists, replace with that stamp text
                     "questionText": "string",
                     "isExtraImageExist": "", // if image exists, replace with [image here]
                     "referenceText": "",
@@ -55,12 +54,13 @@ function App() {
                 Rules:
                 1. Extract all MCQs, not just one.
                 2. Preserve exact wording. Keep the original language (do not translate).
-                3. Keep all relevant details (diagrams = [image] if needed).
-                4. Return ONLY JSON, no explanations, no markdown or code blocks.
+                3. Replace all relevant details like diagrams or images or tables or other complex things with [image/diagram here].
+                4. Return ONLY JSON, no explanations, no markdown or code blocks, no unneeded text.
                 5. Return empty string for referenceText and solutionText if not applicable.
-                6. Reference text can be inside [](e.g.: [ঢা. বি. ২০২৪-২৫]). Also, solutionText can be inside ব্যাখ্যা/Solution/Solve or any similar part.
-                7. Create EXACT clones of question(s). Do not change anything.
-                8. Never select 2 answers as correct. If there are 2 correct answers, select the most correct one.`
+                6. Reference text can be inside [](e.g.: [ঢা. বি. ২০২৪-২৫] or [ঢাকা নটরডেম কলেজ, রাজশাহী সরকারি পাবলিক স্কুল] etc). Also, solutionText can be inside ব্যাখ্যা/Solution/Solve or any similar part(It might be bottom of the question).
+                7. Create EXACT clones of question(s). Do not change anything of any question or answer.
+                8. Never select 2 answers as correct. Never generate answer of any quiz. just get the correct answer from surroundings(it can be ticked, lebeled, written or any other way)
+`
               },
               {
                 inlineData: {
@@ -121,7 +121,6 @@ function App() {
           <h2>Extracted Questions:</h2>
           {questions.map((q, index) => (
             <div key={index}>
-              {q.stampText && <p>Stamp: {p.stampText}</p>}
               {q.questionText && <p>{q.questionText}</p>}
               {q.referenceText && <p>{q.referenceText}</p>}
               <ul>
